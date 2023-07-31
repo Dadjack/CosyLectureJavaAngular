@@ -1,0 +1,53 @@
+Sub Create_Tables()
+
+DoCmd.RunSQL "CREATE TABLE Author(" & _
+   "idAuthor INT," & _
+   "firstName VARCHAR(50)," & _
+   "lastName VARCHAR(50)," & _
+   "bio VARCHAR(200)," & _
+   "PRIMARY KEY(idAuthor)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Category(" & _
+   "idCategory INT," & _
+   "label VARCHAR(50)," & _
+   "definition VARCHAR(200)," & _
+   "PRIMARY KEY(idCategory)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Book(" & _
+   "idBook INT," & _
+   "title VARCHAR(100)," & _
+   "quantity INT," & _
+   "resume VARCHAR(400)," & _
+   "available LOGICAL," & _
+   "idCategory INT NOT NULL," & _
+   "idAuthor INT NOT NULL," & _
+   "PRIMARY KEY(idBook)," & _
+   "FOREIGN KEY(idCategory) REFERENCES Category(idCategory)," & _
+   "FOREIGN KEY(idAuthor) REFERENCES Author(idAuthor)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE LIbraryUser(" & _
+   "idUser INT," & _
+   "firstName VARCHAR(50)," & _
+   "lastName VARCHAR(50)," & _
+   "birthday DATE," & _
+   "email VARCHAR(50)," & _
+   "phoneNumber VARCHAR(50)," & _
+   "PRIMARY KEY(idUser)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Borrow(" & _
+   "idBorrow INT," & _
+   "startDate DATE," & _
+   "endDate DATE," & _
+   "amount DECIMAL(15,2)," & _
+   "idBook INT," & _
+   "idUser INT," & _
+   "PRIMARY KEY(idBorrow)," & _
+   "FOREIGN KEY(idBook) REFERENCES Book(idBook)," & _
+   "FOREIGN KEY(idUser) REFERENCES LIbraryUser(idUser)" & _
+");"   
+
+End Sub
