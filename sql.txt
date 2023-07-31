@@ -1,6 +1,6 @@
-CREATE DATABASE Bibliotheque;
+CREATE DATABASE Library;
 
-USE Bibliotheque;
+USE Library;
 
 CREATE TABLE Author(
    idAuthor INT,
@@ -22,7 +22,7 @@ CREATE TABLE Book(
    title VARCHAR(100),
    quantity INT,
    resume VARCHAR(400),
-   available LOGICAL,
+   available BOOLEAN,
    idCategory INT NOT NULL,
    idAuthor INT NOT NULL,
    PRIMARY KEY(idBook),
