@@ -22,7 +22,7 @@ CREATE TABLE Book(
    title VARCHAR(100),
    quantity INT,
    resume VARCHAR(400),
-   available BOOLEAN,
+   available LOGICAL,
    idCategory INT NOT NULL,
    idAuthor INT NOT NULL,
    PRIMARY KEY(idBook),
@@ -34,8 +34,9 @@ CREATE TABLE LIbraryUser(
    idUser INT,
    firstName VARCHAR(50),
    lastName VARCHAR(50),
-   birthday DATE,
+   password VARCHAR(150),
    email VARCHAR(50),
+   birthday DATE,
    phoneNumber VARCHAR(50),
    PRIMARY KEY(idUser)
 );
