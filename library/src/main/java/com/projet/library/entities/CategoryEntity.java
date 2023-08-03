@@ -1,13 +1,11 @@
 package com.projet.library.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collection;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +17,17 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCategory;
+
+    @Column(nullable = false, length = 50)
     private String label;
+
+    @Column(length = 200)
     private String definition;
+
+    @Column(length = 200)
     private String picture;
+
+    @OneToMany(mappedBy = "category")
+    private Collection<BookEntity> book;
+
 }

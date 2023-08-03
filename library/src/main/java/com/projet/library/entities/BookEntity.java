@@ -3,14 +3,7 @@ package com.projet.library.entities;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,11 +32,23 @@ public class BookEntity {
     private Boolean available;
 
     @Column(name = "createdAt")
-    private LocalDateTime createdAt; 
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false , length = 50)
+    private String editor;
+
+    @Column(nullable = false , length = 50)
+    private String publicationYear;
+
+    @Column(length = 50)
+    private String version;
 
     @OneToMany(mappedBy = "book")
     public Collection<BorrowEntity> borrows;
 
-    @OneToOne(mappedBy = "book")
+    @OneToMany(mappedBy = "book")
     private AuthorEntity author;
+
+    @ManyToOne
+    private CategoryEntity category;
 }

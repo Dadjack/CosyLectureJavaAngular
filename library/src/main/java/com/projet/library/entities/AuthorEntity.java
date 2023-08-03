@@ -1,12 +1,9 @@
 package com.projet.library.entities;
 import java.util.Collection;
-
 import jakarta.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @AllArgsConstructor
@@ -27,6 +24,6 @@ public class AuthorEntity {
     @Column(name = "bio", columnDefinition = "TEXT")
     private String bio;
 
-    @OneToMany(mappedBy = "books")
-    public Collection<BookEntity> books;
+    @OneToMany(mappedBy = "author")
+    public Collection<BookEntity> book;
 }
