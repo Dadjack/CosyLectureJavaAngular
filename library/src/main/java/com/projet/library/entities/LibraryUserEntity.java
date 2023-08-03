@@ -1,6 +1,7 @@
 package com.projet.library.entities;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,15 +16,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "book")
-public class BookEntity {
+@Table(name = "libraryUser")
+public class LibraryUserEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBook;
-    private String title;
-    private Integer quantity;
-    private String resume;
-    private Boolean available;
-    private LocalDateTime datetime; 
+    private Integer idUser;
+    private String firstname;
+    private String lastName;
+    private String password;
+    private String email;
+    private Date birthday;
+    private String picture;
+    private Integer phoneNumber;
+    private String role;
 }
