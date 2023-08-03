@@ -1,12 +1,18 @@
 package com.projet.library.entities;
-import jakarta.persistence.Entity;
+import java.util.Collection;
+
 import jakarta.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "author")
-@lombok.Data
-@lombok.AllArgsConstructor
-@lombok.NoArgsConstructor
 public class AuthorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +27,6 @@ public class AuthorEntity {
     @Column(name = "bio", columnDefinition = "TEXT")
     private String bio;
 
+    @OneToMany(mappedBy = "books")
+    public Collection<BookEntity> books;
 }

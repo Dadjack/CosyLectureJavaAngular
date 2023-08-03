@@ -2,12 +2,17 @@ package com.projet.library.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "borrow")
-@lombok.Data
-@lombok.AllArgsConstructor
-@lombok.NoArgsConstructor
 public class BorrowEntity {
 
 @Id
@@ -23,6 +28,11 @@ public class BorrowEntity {
     @Column(name = "amount")
     private Float amount;
 
+    @ManyToOne
+    private LibraryUserEntity user;
+
+    @ManyToOne
+    private BookEntity book;
 
 
 }
