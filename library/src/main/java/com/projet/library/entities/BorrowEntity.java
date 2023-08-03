@@ -2,8 +2,6 @@ package com.projet.library.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,14 +17,13 @@ public class BorrowEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "startDate", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime startDate;
 
-    @Column(name = "endDate", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime endDate;
 
-    @Column(name = "amount")
-    private Float amount;
+    private Float penalty;
 
     @ManyToOne
     private LibraryUserEntity user;

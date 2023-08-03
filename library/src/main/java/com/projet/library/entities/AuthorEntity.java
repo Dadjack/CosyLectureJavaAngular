@@ -15,14 +15,17 @@ public class AuthorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "firstname", length = 50, nullable = false)
+    @Column(length = 50, nullable = false)
     private String firstname;
 
-    @Column(name = "lastname", length = 50, nullable = false)
+    @Column(length = 50, nullable = false)
     private String lastname;
 
-    @Column(name = "bio", columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String bio;
+
+    @Column(length = 200 , nullable = false)
+    private String picture;
 
     @OneToMany(mappedBy = "author")
     public Collection<BookEntity> book;

@@ -17,21 +17,20 @@ public class BookEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBook;
+    private Integer id;
 
-    @Column(name = "title", nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(nullable = false)
     private Integer quantity;
 
-    @Column(name = "summary", nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String summary;
 
-    @Column(name = "available")
     private Boolean available;
 
-    @Column(name = "createdAt")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     @Column(nullable = false , length = 50)
@@ -43,10 +42,13 @@ public class BookEntity {
     @Column(length = 50)
     private String version;
 
+    @Column(length = 200 , nullable = false)
+    private String picture;
+
     @OneToMany(mappedBy = "book")
     public Collection<BorrowEntity> borrows;
 
-    @OneToMany(mappedBy = "book")
+    @ManyToOne
     private AuthorEntity author;
 
     @ManyToOne
