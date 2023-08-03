@@ -1,7 +1,5 @@
 package com.projet.library.entities;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,15 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "book")
-public class BookEntity {
+@Table(name = "category")
+public class CategoryEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBook;
-    private String title;
-    private Integer quantity;
-    private String resume;
-    private Boolean available;
-    private LocalDateTime datetime; 
+    private Integer idCategory;
+    private String label;
+    private String definition;
+    private String picture;
 }
