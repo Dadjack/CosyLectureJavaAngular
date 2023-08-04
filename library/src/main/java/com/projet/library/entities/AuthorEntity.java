@@ -1,4 +1,5 @@
 package com.projet.library.entities;
+
 import java.time.LocalDateTime;
 import java.util.Collection;
 import jakarta.persistence.*;
@@ -37,4 +38,10 @@ public class AuthorEntity {
 
     @OneToMany(mappedBy = "author")
     public Collection<BookEntity> book;
+
+    @OneToMany(mappedBy = "author")
+    private Collection<PictureEntity> pictures;
+
+    @OneToMany(mappedBy ="author")
+    private Collection<NationalityEntity> nationalities;
 }

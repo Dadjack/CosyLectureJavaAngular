@@ -1,6 +1,5 @@
 package com.projet.library.entities;
 
-
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -22,34 +21,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "libraryuser", 
-    uniqueConstraints = { 
-        @UniqueConstraint(columnNames = "firstname"),
-        @UniqueConstraint(columnNames = "email") 
-    })
+@Table(name = "libraryuser", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class LibraryUserEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false, length = 50)
     private String firstName;
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false, length = 50)
     private String lastName;
 
-    @Column(nullable = false,length = 200)
+    @Column(nullable = false, length = 200)
     private String password;
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false, length = 50)
     private String email;
 
     @Column(nullable = false)
     private LocalDateTime birthday;
-
-    @Column(length = 200)
-    private String picture;
 
     @Column(length = 50)
     private Integer phoneNumber;
@@ -59,5 +53,7 @@ public class LibraryUserEntity {
 
     @ManyToMany(mappedBy = "user")
     public Collection<BorrowEntity> borrows;
-    
+
+    @OneToMany(mappedBy = "user")
+    private Collection<PictureEntity> pictures;
 }

@@ -54,4 +54,6 @@ public class BookEntity {
     @OneToOne
     private CategoryEntity category;
 
+    @OneToMany(mappedBy = "book")
+    private Collection<PictureEntity> pictures;
 }
