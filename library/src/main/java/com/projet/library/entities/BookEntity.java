@@ -45,10 +45,11 @@ public class BookEntity {
     @Column(length = 200 , nullable = false)
     private String picture;
 
+    //Relations
     @ManyToMany(mappedBy = "book")
     public Collection<BorrowEntity> borrows;
 
-    @OneToOne
+    @ManyToOne
     private AuthorEntity author;
 
     @OneToOne
