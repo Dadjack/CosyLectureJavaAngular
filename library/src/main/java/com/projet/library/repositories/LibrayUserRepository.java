@@ -1,5 +1,9 @@
 package com.projet.library.repositories;
 
-public class LibrayUserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projet.library.entities.LibraryUserEntity;
+
+public interface LibrayUserRepository extends JpaRepository<LibraryUserEntity, Integer> {
     
 }
