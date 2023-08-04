@@ -46,7 +46,7 @@ public class BookEntity {
     private String picture;
 
     @OneToMany(mappedBy = "book")
-    public Collection<BorrowEntity> borrows;
+    public Collection<BorrowEntity> borrowCollection;
 
     @ManyToOne
     private AuthorEntity author;
