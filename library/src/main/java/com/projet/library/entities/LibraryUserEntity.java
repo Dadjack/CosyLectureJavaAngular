@@ -4,19 +4,16 @@ package com.projet.library.entities;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +22,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "libraryUser")
+@Table(name = "libraryuser", 
+    uniqueConstraints = { 
+        @UniqueConstraint(columnNames = "firstname"),
+        @UniqueConstraint(columnNames = "email") 
+    })
 public class LibraryUserEntity {
     
     @Id
@@ -53,10 +54,10 @@ public class LibraryUserEntity {
     @Column(length = 50)
     private Integer phoneNumber;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private RoleEntity role;
 
-    @OneToMany(mappedBy = "user")
+    @ManyToMany(mappedBy = "user")
     public Collection<BorrowEntity> borrows;
     
 }

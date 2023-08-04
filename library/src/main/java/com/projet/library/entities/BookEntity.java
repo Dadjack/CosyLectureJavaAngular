@@ -45,12 +45,13 @@ public class BookEntity {
     @Column(length = 200 , nullable = false)
     private String picture;
 
-    @OneToMany(mappedBy = "book")
+    @ManyToMany(mappedBy = "book")
     public Collection<BorrowEntity> borrows;
 
-    @ManyToOne
+    @OneToOne
     private AuthorEntity author;
 
-    @ManyToOne
+    @OneToOne
     private CategoryEntity category;
+
 }
