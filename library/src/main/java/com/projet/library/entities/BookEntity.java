@@ -49,9 +49,6 @@ public class BookEntity {
     @OneToMany(mappedBy = "book")
     public Collection<BorrowEntity> borrowCollection;
 
-    @OneToMany(mappedBy = "book")
-    public Collection<BookEntity> bookCollection;
-
     @ManyToOne
     private AuthorEntity author;
 

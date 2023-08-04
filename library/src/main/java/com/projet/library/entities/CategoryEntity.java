@@ -29,6 +29,6 @@ public class CategoryEntity {
 
     //Relationships
     @OneToMany(mappedBy = "category")
-    private Collection<BookEntity> book;
+    private Collection<BookEntity> bookCollection;
 
 }

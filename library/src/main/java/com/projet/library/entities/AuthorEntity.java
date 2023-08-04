@@ -40,8 +40,8 @@ public class AuthorEntity {
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "country_id")
     )
-    private Collection <NationalityEntity> nationalityCollection;
+    private Collection<NationalityEntity> nationalityCollection;
 
     @OneToMany(mappedBy = "author")
-    private Collection <PictureEntity> pictureCollection;
+    private Collection<PictureEntity> pictureCollection;
 }

@@ -29,6 +29,6 @@ public class RoleEntity {
     private ERole name;
 
     //Relationships
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "role")
     public Collection<LibraryUserEntity> userCollection;
 }
