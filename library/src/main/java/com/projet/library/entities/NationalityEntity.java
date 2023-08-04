@@ -20,7 +20,8 @@ public class NationalityEntity {
     @Column(length = 50, nullable = false)
     private String name;
 
+    //Relationships
     @ManyToMany
-    private Collection <AuthorEntity> author;
+    private Collection <AuthorEntity> authorCollection;
 
 }

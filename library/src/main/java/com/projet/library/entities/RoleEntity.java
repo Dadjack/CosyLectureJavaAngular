@@ -28,6 +28,7 @@ public class RoleEntity {
     @Column(length = 20)
     private ERole name;
 
+    //Relationships
     @ManyToMany(mappedBy = "role")
     public Collection<LibraryUserEntity> users;
 }

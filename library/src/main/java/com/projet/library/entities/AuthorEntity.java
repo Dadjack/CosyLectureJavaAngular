@@ -29,14 +29,14 @@ public class AuthorEntity {
     @Column(columnDefinition = "TEXT")
     private String bio;
 
-    @Column(length = 50, nullable = false)
-    private String nationality;
-
-    @Column(length = 200 , nullable = false)
-    private String picture;
-
-    //Relations
+    //Relationships
     // MappedBy id de l'auteur sert de de référence pour récupérer sa collection de livres
     @OneToMany(mappedBy = "author")
-    public Collection<BookEntity> book;
+    public Collection<BookEntity> bookCollection;
+
+    @ManyToMany
+    private Collection <NationalityEntity> nationalityCollection;
+
+    @OneToMany(mappedBy = "picture")
+    private Collection <PictureEntity> pictureCollection;
 }

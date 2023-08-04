@@ -31,6 +31,7 @@ public class PictureEntity {
     @Column (nullable = false, length =255)
     private String description;
 
+    //Relationships
     @ManyToOne
     private LibraryUserEntity user;
 

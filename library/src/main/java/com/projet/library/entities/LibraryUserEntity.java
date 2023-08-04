@@ -47,6 +47,7 @@ public class LibraryUserEntity {
     @Column(length = 50)
     private Integer phoneNumber;
 
+    //Relationships
     @ManyToOne
     private RoleEntity role;
 

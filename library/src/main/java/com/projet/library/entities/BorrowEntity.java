@@ -25,6 +25,7 @@ public class BorrowEntity {
 
     private Float penalty;
 
+    //Relationships
     @ManyToOne
     private LibraryUserEntity user;
 
