@@ -1,4 +1,5 @@
 package com.projet.library.entities;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,8 +22,15 @@ public class AuthorEntity {
     @Column(length = 50, nullable = false)
     private String lastname;
 
+    private LocalDateTime birthday;
+
+    private LocalDateTime deathday;
+
     @Column(columnDefinition = "TEXT")
     private String bio;
+
+    @Column(length = 50, nullable = false)
+    private String nationality;
 
     @Column(length = 200 , nullable = false)
     private String picture;
