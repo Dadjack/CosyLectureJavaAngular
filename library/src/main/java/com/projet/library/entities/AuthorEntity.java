@@ -1,12 +1,15 @@
 package com.projet.library.entities;
-import java.time.LocalDateTime;
-import java.util.Collection;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
+
 @Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
