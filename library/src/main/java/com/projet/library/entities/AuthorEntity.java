@@ -35,8 +35,13 @@ public class AuthorEntity {
     public Collection<BookEntity> bookCollection;
 
     @ManyToMany
+    @JoinTable(
+            name = "author_country",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id")
+    )
     private Collection <NationalityEntity> nationalityCollection;
 
-    @OneToMany(mappedBy = "picture")
+    @OneToMany(mappedBy = "author")
     private Collection <PictureEntity> pictureCollection;
 }
