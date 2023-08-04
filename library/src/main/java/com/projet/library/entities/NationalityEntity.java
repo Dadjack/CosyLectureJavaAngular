@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "author")
+@Table(name = "country")
 public class NationalityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class NationalityEntity {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy ="nationalities")
-    private Collection<AuthorEntity> author;
+    @ManyToMany
+    private Collection <AuthorEntity> author;
 
 }

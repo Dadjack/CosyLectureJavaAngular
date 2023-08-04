@@ -45,7 +45,12 @@ public class BookEntity {
     @Column(length = 200 , nullable = false)
     private String picture;
 
+<<<<<<< HEAD
     @OneToMany(mappedBy = "book")
+=======
+    //Relations
+    @ManyToMany(mappedBy = "book")
+>>>>>>> 35b4829f087c538b7ee93d291a789d245b60a9af
     public Collection<BorrowEntity> borrows;
 
     @ManyToOne
