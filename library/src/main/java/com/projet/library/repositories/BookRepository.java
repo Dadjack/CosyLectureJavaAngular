@@ -7,7 +7,7 @@ import com.projet.library.entities.CategoryEntity;
 
 public interface BookRepository extends JpaRepository <BookEntity, Integer>  {
     
-    List<BookEntity> findByTitle(String titre);
+    List<BookEntity> findByTitle(String title);
     List<BookEntity> findByAuthor(String author);
     List<BookEntity> findByCategory(CategoryEntity category);
 }
