@@ -51,7 +51,7 @@ public class LibraryUserEntity {
     @ManyToOne
     private RoleEntity role;
 
-    @ManyToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     public Collection<BorrowEntity> borrows;
 
     @OneToMany(mappedBy = "user")
