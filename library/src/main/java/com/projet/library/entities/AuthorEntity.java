@@ -38,15 +38,5 @@ public class AuthorEntity {
     //Relations
     // MappedBy id de l'auteur sert de de référence pour récupérer sa collection de livres
     @OneToMany(mappedBy = "author")
-<<<<<<< HEAD
     public Collection<BookEntity> book;
-=======
-    public Collection<BookEntity> bookCollection;
-
-    @OneToMany(mappedBy = "author")
-    private Collection<PictureEntity> pictureCollection;
-
-    @ManyToMany
-    private Collection<NationalityEntity> nationalityCollection;
->>>>>>> 35b4829f087c538b7ee93d291a789d245b60a9af
 }
