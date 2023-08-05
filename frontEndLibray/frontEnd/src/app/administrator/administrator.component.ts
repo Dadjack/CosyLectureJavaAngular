@@ -12,16 +12,16 @@ export class AdministratorComponent {
 
   constructor(private router: Router,private bookService: BookService){}
 
-  id!: number;
-  //book!: Book;
-  //messageError!: string;
+  // id!: number;
+  // //book!: Book;
+  // //messageError!: string;
 
-  enregistrerUtilisateur(formulaire: NgForm){
-      this.bookService.createBook(this.book).subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate(['/utilisateurs']);
-        }
-      );
-    }
+  // enregistrerUtilisateur(formulaire: NgForm){
+  //     this.bookService.createBook(this.book).subscribe(
+  //       data => {
+  //         console.log(data);
+  //         this.router.navigate(['/utilisateurs']);
+  //       }
+  //     );
+  //   }
   }
