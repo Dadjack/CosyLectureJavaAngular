@@ -1,11 +1,12 @@
 package com.projet.library.entities;
 
-import java.util.Collection;
-
+import com.projet.library.repositories.NationalityRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collection;
 
 @Data
 @AllArgsConstructor
@@ -24,4 +25,7 @@ public class NationalityEntity {
     @ManyToMany
     private Collection <AuthorEntity> authorCollection;
 
+    public static Collection<NationalityEntity> randomNationalities(NationalityRepository nationalityRepository) {
+        return nationalityRepository.findAll();
+    }
 }
