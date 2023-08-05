@@ -1,5 +1,9 @@
 package com.projet.library.repositories;
 
-public class AuthorRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projet.library.entities.AuthorEntity;
+
+public interface AuthorRepository extends JpaRepository<AuthorEntity, Integer> {
     
 }

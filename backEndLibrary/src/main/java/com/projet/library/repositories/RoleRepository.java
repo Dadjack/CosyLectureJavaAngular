@@ -1,5 +1,9 @@
 package com.projet.library.repositories;
 
-public class RoleRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projet.library.entities.RoleEntity;
+
+public interface RoleRepository extends JpaRepository<RoleEntity,Integer> {
     
 }
