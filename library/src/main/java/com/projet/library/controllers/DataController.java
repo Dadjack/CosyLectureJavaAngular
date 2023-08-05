@@ -19,6 +19,7 @@
         Faker faker = new Faker(new Locale("fr"));
 
         public final AuthorRepository authorRepository;
+        public final BookRepository bookRepository;
         public final CategoryRepository categoryRepository;
         public final LibraryUserRepository userRepository;
         public final NationalityRepository nationalityRepository;
@@ -28,12 +29,14 @@
         @Autowired
         public DataController(
                 AuthorRepository authorRepository,
+                BookRepository bookRepository,
                 CategoryRepository categoryRepository,
                 LibraryUserRepository userRepository,
                 NationalityRepository nationalityRepository,
                 RoleRepository roleRepository
         ) {
             this.authorRepository = authorRepository;
+            this.bookRepository = bookRepository;
             this.categoryRepository = categoryRepository;
             this.userRepository = userRepository;
             this.nationalityRepository = nationalityRepository;
@@ -100,9 +103,12 @@
                 for (int l = 0; l < 100; l++) {
                     BookEntity book = new BookEntity();
                     book.setTitle(faker.book().title());
-                    book.setSummary(faker.lorem().sentence());
-                    book.setIsbn(faker.code().isbn13());
-                    book.setPublicationDate(faker.date().birthday().toLocalDateTime());
+                    book.setSummary(faker.lorem().paragraph());
+                    book.setQuantity(faker.number().numberBetween(1, 10));
+                    book.setEditor(faker.book().publisher());
+                    book.setAvailable(true);
+                    book.setCreatedAt(faker.date().birthday().toLocalDateTime());
+                    book.setPublicationYear(String.valueOf(faker.number().numberBetween(1900, 2019)));
                     book.setAuthor(author);
                     book.setCategory(categoryRepository.findById(1).get());
                     bookRepository.save(book);
