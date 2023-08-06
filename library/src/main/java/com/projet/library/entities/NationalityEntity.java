@@ -1,6 +1,5 @@
 package com.projet.library.entities;
 
-import com.projet.library.repositories.NationalityRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +22,11 @@ public class NationalityEntity {
 
     //Relationships
     @ManyToMany
+    @JoinTable(
+            name = "author_country",
+            joinColumns = @JoinColumn(name = "country_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
     private Collection <AuthorEntity> authorCollection;
 
-    public static Collection<NationalityEntity> randomNationalities(NationalityRepository nationalityRepository) {
-        return nationalityRepository.findAll();
-    }
 }

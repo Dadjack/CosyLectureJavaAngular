@@ -37,7 +37,7 @@ public class LibraryUserEntity {
     private LocalDateTime birthday;
 
     @Column(length = 50)
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @Column(nullable = false)
     private String address;
@@ -48,7 +48,4 @@ public class LibraryUserEntity {
 
     @OneToMany(mappedBy = "user")
     public Collection<BorrowEntity> borrowCollection;
-
-    @OneToMany(mappedBy = "user")
-    private Collection<PictureEntity> pictureCollection;
 }
