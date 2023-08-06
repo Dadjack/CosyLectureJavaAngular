@@ -1,5 +1,6 @@
 package com.projet.library.controllers;
 
+import com.projet.library.datacreation.DataTables;
 import com.projet.library.entities.*;
 import com.projet.library.repositories.*;
 import net.datafaker.Faker;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -45,65 +48,47 @@ public class DataController {
         this.roleRepository = roleRepository;
     }
 
-    String[] roles = { "ADMIN", "USER" };
-
-    String[] categories = { "Roman", "Science-fiction", "Policier", "BD", "Manga", "Jeunesse", "Cuisine", "Art",
-            "Histoire", "Biographie", "Santé", "Voyage", "Sport", "Loisir", "Nature", "Religion", "Droit", "Economie",
-            "Politique", "Sciences", "Informatique", "Dictionnaire", "Encyclopédie", "Littérature", "Poésie", "Théâtre",
-            "Essai", "Autre" };
-
-    String[] countries = { "France", "Allemagne", "Angleterre", "Espagne", "Italie", "Portugal", "Belgique", "Suisse",
-            "Autriche", "Pays-Bas", "Luxembourg", "Danemark", "Suède", "Norvège", "Finlande", "Grèce", "Turquie",
-            "Russie", "Pologne", "République Tchèque", "Slovaquie", "Hongrie", "Roumanie", "Bulgarie", "Croatie",
-            "Serbie", "Bosnie-Herzégovine", "Monténégro", "Albanie", "Macédoine", "Ukraine", "Biélorussie", "Estonie",
-            "Lettonie", "Lituanie", "Moldavie", "Slovénie", "Chypre", "Malte", "Islande", "Irlande", "Ecosse",
-            "Pays de Galles", "Irlande du Nord", "Etats-Unis", "Canada", "Mexique", "Brésil", "Argentine", "Chili",
-            "Colombie", "Venezuela", "Uruguay", "Paraguay", "Bolivie", "Pérou", "Equateur", "Afrique du Sud", "Egypte",
-            "Maroc", "Algérie", "Tunisie", "Libye", "Sénégal", "Côte d'Ivoire", "Nigeria", "Kenya", "Ethiopie",
-            "Tanzanie", "Ouganda", "Soudan", "Soudan du Sud", "Cameroun", "Angola", "Mozambique", "Madagascar",
-            "Zimbabwe", "Zambie", "Namibie", "Botswana", "Mali", "Burkina Faso", "Niger", "Tchad",
-            "République Centrafricaine", "Congo", "Gabon", "Congo RDC", "Guinée", "Guinée-Bissau", "Guinée Equatoriale",
-            "Togo", "Benin", "Burundi", "Rwanda", "Somalie", "Erythrée", "Djibouti", "Comores", "Mauritanie", "Maurice",
-            "Seychelles", "Bahamas", "Cuba", "Haïti", "République Dominicaine", "Jamaïque", "Trinité-et-Tobago",
-            "Barbade", "Costa Rica", "Panama", "Nicaragua", "Honduras", "El Salvador", "Guatemala", "Belize", "Guyana",
-            "Suriname", "Guyane", "Pérou", "Bolivie", "Equateur", "Venezuela", "Colombie", "Paraguay", "Uruguay",
-            "Argentine", "Brésil", "Chili", "Mexique", "Etats-Unis", "Canada", "Groenland", "Islande", "Norvège",
-            "Suède", "Finlande", "Russie", "Estonie", "Lettonie", "Lituanie", "Pologne", "Allemagne", "Danemark",
-            "Pays-Bas", "Belgique", "Luxembourg", "Royaume-Uni", "Irlande", "France", "Espagne", "Portugal", "Suisse",
-            "Autriche", "Italie", "Slovénie", "Croatie", "Bosnie-Herzégovine", "Serbie", "Monténégro", "Albanie",
-            "Macédoine", "Grèce", "Bulgarie", "Roumanie", "Hongrie", "Slovaquie", "République Tchèque", "Ukraine",
-            "Biélorussie", "Moldavie", "Turquie", "Chypre", "Malte", "Andorre", "Liechtenstein", "Monaco", "Vatican",
-            "Saint-Marin", "Australie", "Nouvelle-Zélande", "Papouasie-Nouvelle-Guinée", "Fidji", "Salomon", "Vanuatu",
-            "Micronésie", "Kiribati", "Samoa", "Tonga", "Tuvalu", "Nauru", "Iles Marshall", "Palau", "Indonésie",
-            "Philippines", "Malaisie" };
-
     @GetMapping("/dataset")
     public String createData(Model model) {
-
-         // Creation of nationalities
-        for (int j = 0; j < countries.length; j++) {
+         // Creation of countries
+        for (int c = 0; c < DataTables.countries.length; c++) {
             NationalityEntity country = new NationalityEntity();
-            country.setName(countries[j]);
+            country.setName(DataTables.countries[c]);
             nationalityRepository.save(country);
         }
-        model.addAttribute("nationalities", nationalityRepository.findAll());
+        model.addAttribute("countries", nationalityRepository.findAll());
 
         // Creation of roles
-        for (int i = 0; i < roles.length; i++) {
-            RoleEntity role = new RoleEntity();
-            role.setName(roles[i]);
-            roleRepository.save(role);
-        }
-        model.addAttribute("roles", roleRepository.findAll());
+
+           for (int i = 0; i < DataTables.roles.length; i++) {
+           RoleEntity role = new RoleEntity();
+           role.setName(DataTables.roles[i]);
+           roleRepository.save(role);
+       }
+           model.addAttribute("roles", roleRepository.findAll());
 
         // Creation of categories
-        for (int i = 0; i < categories.length; i++) {
+        for (int i = 0; i < DataTables.categories.length; i++) {
             CategoryEntity category = new CategoryEntity();
-            category.setLabel(categories[i]);
+            category.setLabel(DataTables.categories[i]);
             category.setDefinition(faker.lorem().sentence());
             categoryRepository.save(category);
         }
         model.addAttribute("categories", categoryRepository.findAll());
+
+        // Creation of admins
+        for (int a = 0; a < DataTables.firstnames.length; a++) {
+            LibraryUserEntity admin = new LibraryUserEntity();
+            admin.setFirstName(DataTables.firstnames[a]);
+            admin.setLastName(faker.name().lastName());
+            admin.setPhoneNumber(faker.phoneNumber().cellPhone());
+            admin.setEmail("admin" + a + "@library-les-loubards.fr");
+            admin.setPassword(faker.internet().password());
+            admin.setAddress(faker.address().fullAddress());
+            admin.setBirthday(faker.date().birthday().toLocalDateTime());
+            admin.setRole(roleRepository.findById(1).get());
+            userRepository.save(admin);
+        }
 
         // Creation of users
         for (int u = 0; u < 100; u++) {
@@ -129,6 +114,19 @@ public class DataController {
             author.setBirthday(faker.date().birthday().toLocalDateTime());
             author.setDeathday(faker.date().birthday().toLocalDateTime());
             authorRepository.save(author);
+            int random = faker.number().numberBetween(1, 5);
+            for (int j = 0; j < random; j++) {
+                PictureEntity picture = new PictureEntity();
+                picture.setUrl(faker.internet().image());
+                picture.setName(author.getFirstname() + "_" + author.getLastname() + "_" + j);
+                picture.setDescription("Photo de " + author.getFirstname() + " " + author.getLastname() + " " + j);
+                picture.setAuthor(author);
+                pictureRepository.save(picture);
+            }
+            int randomAN = faker.number().numberBetween(1, 3);
+            for (int an = 0; an < randomAN; an++){
+    author.setNationalityCollection(nationalityRepository.findAllById(Collections.singleton(faker.number().numberBetween(1, DataTables.countries.length))));
+                }
         }
         model.addAttribute("authors", authorRepository.findAll());
 
@@ -143,11 +141,9 @@ public class DataController {
             book.setVersion("Français");
             book.setCreatedAt(faker.date().birthday().toLocalDateTime());
             book.setPublicationYear(String.valueOf(faker.number().numberBetween(1900, 2019)));
-            Iterable<AuthorEntity> authors = authorRepository.findAll();
-            for (AuthorEntity author : authors) {
-                book.setAuthor(author);
-            }
-            book.setCategory(categoryRepository.findById(faker.number().numberBetween(1, categories.length)).get());
+            Collection<AuthorEntity> authors = authorRepository.findAll();
+            book.setAuthor(authors.stream().reduce((a, b1) -> b1).get());
+            book.setCategory(categoryRepository.findById(faker.number().numberBetween(1, DataTables.categories.length)).get());
             bookRepository.save(book);
         }
         model.addAttribute("books", bookRepository.findAll());
@@ -155,7 +151,7 @@ public class DataController {
         // Creation of borrows
         for (int n = 0; n < 100; n++) {
             BorrowEntity borrow = new BorrowEntity();
-            borrow.setUser(userRepository.findById(faker.number().numberBetween(1, 100)).get());
+            borrow.setUser(userRepository.findById(faker.number().numberBetween(4, 104)).get());
             borrow.setBook(bookRepository.findById(faker.number().numberBetween(1, 100)).get());
             borrow.setStartDate(faker.date().past(10, TimeUnit.DAYS).toLocalDateTime());
             borrow.setEndDate(faker.date().future(1, TimeUnit.DAYS).toLocalDateTime());
