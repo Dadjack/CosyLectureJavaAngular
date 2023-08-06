@@ -3,6 +3,7 @@ package com.projet.library.datacreation;
 public class DataTables {
 
     public static String[] firstnames = {"Ange" , "David", "Joseph" , "Ugo"};
+    public static String[] lastnames = {"Planiteye" , "Dadjack", "Ralai" , "Bittoni"};
 
     public static String[] categories = { "Roman", "Science-fiction", "Policier", "BD", "Manga", "Jeunesse", "Cuisine", "Art",
             "Histoire", "Biographie", "Santé", "Voyage", "Sport", "Loisir", "Nature", "Religion", "Droit", "Economie",

@@ -59,7 +59,6 @@ public class DataController {
         model.addAttribute("countries", nationalityRepository.findAll());
 
         // Creation of roles
-
            for (int i = 0; i < DataTables.roles.length; i++) {
            RoleEntity role = new RoleEntity();
            role.setName(DataTables.roles[i]);
@@ -80,9 +79,9 @@ public class DataController {
         for (int a = 0; a < DataTables.firstnames.length; a++) {
             LibraryUserEntity admin = new LibraryUserEntity();
             admin.setFirstName(DataTables.firstnames[a]);
-            admin.setLastName(faker.name().lastName());
+            admin.setLastName(DataTables.lastnames[a]);
             admin.setPhoneNumber(faker.phoneNumber().cellPhone());
-            admin.setEmail("admin" + a + "@library-les-loubards.fr");
+            admin.setEmail(admin.getFirstName().toLowerCase()+"."+admin.getLastName().toLowerCase()+"@library-les-loubards.fr");
             admin.setPassword(faker.internet().password());
             admin.setAddress(faker.address().fullAddress());
             admin.setBirthday(faker.date().birthday().toLocalDateTime());
@@ -96,7 +95,7 @@ public class DataController {
             user.setFirstName(faker.name().firstName());
             user.setLastName(faker.name().lastName());
             user.setPhoneNumber(faker.phoneNumber().cellPhone());
-            user.setEmail(faker.internet().emailAddress());
+            user.setEmail(user.getFirstName().toLowerCase()+"."+user.getLastName().toLowerCase()+"@gmail.com");
             user.setPassword(faker.internet().password());
             user.setAddress(faker.address().fullAddress());
             user.setBirthday(faker.date().birthday().toLocalDateTime());
@@ -145,6 +144,15 @@ public class DataController {
             book.setAuthor(authors.stream().reduce((a, b1) -> b1).get());
             book.setCategory(categoryRepository.findById(faker.number().numberBetween(1, DataTables.categories.length)).get());
             bookRepository.save(book);
+            int randomBP = faker.number().numberBetween(1, 5);
+            for (int j = 0; j < randomBP; j++) {
+                PictureEntity picture = new PictureEntity();
+                picture.setUrl(faker.internet().image());
+                picture.setName(book.getTitle());
+                picture.setDescription("Photo du livre : " + book.getTitle());
+                picture.setBook(book);
+                pictureRepository.save(picture);
+            }
         }
         model.addAttribute("books", bookRepository.findAll());
 
@@ -159,6 +167,7 @@ public class DataController {
             borrowRepository.save(borrow);
         }
         model.addAttribute("borrows", borrowRepository.findAll());
+
         return "redirect:data";
     }
 
