@@ -151,9 +151,9 @@ public class DataController {
             book.setAvailable(true);
             book.setVersion("Français");
             book.setCreatedAt(faker.date().birthday().toLocalDateTime());
-            book.setPublicationYear(String.valueOf(faker.number().numberBetween(1900, 2019)));
-            Iterable<AuthorEntity> authors = authorRepository.findAll();
-            book.setAuthor(authors.iterator().next());
+            book.setPublicationYear(String.valueOf(faker.number().numberBetween(1250, 2019)));
+
+            book.setAuthor(authorRepository.findById(faker.number().numberBetween(1, 50)).get());
             book.setCategory(
                     categoryRepository.findById(faker.number().numberBetween(1, DataTables.categories.length)).get());
             bookRepository.save(book);
@@ -166,6 +166,9 @@ public class DataController {
                 picture.setBook(book);
                 pictureRepository.save(picture);
             }
+            Iterable<AuthorEntity> authors = authorRepository.findAll();
+            authors.forEach();
+
         }
         model.addAttribute("books", bookRepository.findAll());
 
