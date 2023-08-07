@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -50,26 +49,26 @@ public class DataController {
 
     @GetMapping("/dataset")
     public String createData(Model model) {
-         // Creation of countries
-        for (int c = 0; c < DataTables.countries.length; c++) {
+        // Creation of countries
+        for (int co = 0; co < DataTables.countries.length; co++) {
             NationalityEntity country = new NationalityEntity();
-            country.setName(DataTables.countries[c]);
+            country.setName(DataTables.countries[co]);
             nationalityRepository.save(country);
         }
         model.addAttribute("countries", nationalityRepository.findAll());
 
         // Creation of roles
-           for (int i = 0; i < DataTables.roles.length; i++) {
-           RoleEntity role = new RoleEntity();
-           role.setName(DataTables.roles[i]);
-           roleRepository.save(role);
-       }
-           model.addAttribute("roles", roleRepository.findAll());
+        for (int r = 0; r < DataTables.roles.length; r++) {
+            RoleEntity role = new RoleEntity();
+            role.setName(DataTables.roles[r]);
+            roleRepository.save(role);
+        }
+        model.addAttribute("roles", roleRepository.findAll());
 
         // Creation of categories
-        for (int i = 0; i < DataTables.categories.length; i++) {
+        for (int ca = 0; ca < DataTables.categories.length; ca++) {
             CategoryEntity category = new CategoryEntity();
-            category.setLabel(DataTables.categories[i]);
+            category.setLabel(DataTables.categories[ca]);
             category.setDefinition(faker.lorem().sentence());
             categoryRepository.save(category);
         }
@@ -81,12 +80,19 @@ public class DataController {
             admin.setFirstName(DataTables.firstnames[a]);
             admin.setLastName(DataTables.lastnames[a]);
             admin.setPhoneNumber(faker.phoneNumber().cellPhone());
-            admin.setEmail(admin.getFirstName().toLowerCase()+"."+admin.getLastName().toLowerCase()+"@library-les-loubards.fr");
+            admin.setEmail(admin.getFirstName().toLowerCase() + "." + admin.getLastName().toLowerCase()
+                    + "@library-les-loubards.fr");
             admin.setPassword(faker.internet().password());
             admin.setAddress(faker.address().fullAddress());
             admin.setBirthday(faker.date().birthday().toLocalDateTime());
             admin.setRole(roleRepository.findById(1).get());
             userRepository.save(admin);
+            PictureEntity picture = new PictureEntity();
+            picture.setUrl(faker.internet().image());
+            picture.setName(admin.getFirstName() + "_" + admin.getLastName());
+            picture.setDescription("Photo de " + admin.getFirstName() + " " + admin.getLastName());
+            picture.setUser(admin);
+            pictureRepository.save(picture);
         }
 
         // Creation of users
@@ -95,14 +101,20 @@ public class DataController {
             user.setFirstName(faker.name().firstName());
             user.setLastName(faker.name().lastName());
             user.setPhoneNumber(faker.phoneNumber().cellPhone());
-            user.setEmail(user.getFirstName().toLowerCase()+"."+user.getLastName().toLowerCase()+"@gmail.com");
+            user.setEmail(user.getFirstName().toLowerCase() + "." + user.getLastName().toLowerCase() + "@gmail.com");
             user.setPassword(faker.internet().password());
             user.setAddress(faker.address().fullAddress());
             user.setBirthday(faker.date().birthday().toLocalDateTime());
             user.setRole(roleRepository.findById(2).get());
             userRepository.save(user);
+            PictureEntity picture = new PictureEntity();
+            picture.setUrl(faker.internet().image());
+            picture.setName(user.getFirstName() + "_" + user.getLastName());
+            picture.setDescription("Photo de " + user.getFirstName() + " " + user.getLastName());
+            picture.setUser(user);
+            pictureRepository.save(picture);
         }
-        model.addAttribute("users", userRepository.findAll());       
+        model.addAttribute("users", userRepository.findAll());
 
         // Creation of authors
         for (int k = 0; k < 50; k++) {
@@ -110,11 +122,11 @@ public class DataController {
             author.setFirstname(faker.name().firstName());
             author.setLastname(faker.name().lastName());
             author.setBio(faker.lorem().sentence());
-            author.setBirthday(faker.date().birthday().toLocalDateTime());
+            author.setBirthday(faker.date().past(36500, TimeUnit.DAYS).toLocalDateTime());
             author.setDeathday(faker.date().birthday().toLocalDateTime());
             authorRepository.save(author);
-            int random = faker.number().numberBetween(1, 5);
-            for (int j = 0; j < random; j++) {
+            int randomAP = faker.number().numberBetween(1, 5);
+            for (int j = 0; j < randomAP; j++) {
                 PictureEntity picture = new PictureEntity();
                 picture.setUrl(faker.internet().image());
                 picture.setName(author.getFirstname() + "_" + author.getLastname() + "_" + j);
@@ -123,9 +135,9 @@ public class DataController {
                 pictureRepository.save(picture);
             }
             int randomAN = faker.number().numberBetween(1, 3);
-            for (int an = 0; an < randomAN; an++){
-    author.setNationalityCollection(nationalityRepository.findAllById(Collections.singleton(faker.number().numberBetween(1, DataTables.countries.length))));
-                }
+            for (int an = 0; an < randomAN; an++) {
+                author.setNationalityCollection(nationalityRepository.findAllById(Collections.singleton(faker.number().numberBetween(1, DataTables.countries.length))));
+            }
         }
         model.addAttribute("authors", authorRepository.findAll());
 
@@ -140,9 +152,10 @@ public class DataController {
             book.setVersion("Français");
             book.setCreatedAt(faker.date().birthday().toLocalDateTime());
             book.setPublicationYear(String.valueOf(faker.number().numberBetween(1900, 2019)));
-            Collection<AuthorEntity> authors = authorRepository.findAll();
-            book.setAuthor(authors.stream().reduce((a, b1) -> b1).get());
-            book.setCategory(categoryRepository.findById(faker.number().numberBetween(1, DataTables.categories.length)).get());
+            Iterable<AuthorEntity> authors = authorRepository.findAll();
+            book.setAuthor(authors.iterator().next());
+            book.setCategory(
+                    categoryRepository.findById(faker.number().numberBetween(1, DataTables.categories.length)).get());
             bookRepository.save(book);
             int randomBP = faker.number().numberBetween(1, 5);
             for (int j = 0; j < randomBP; j++) {
