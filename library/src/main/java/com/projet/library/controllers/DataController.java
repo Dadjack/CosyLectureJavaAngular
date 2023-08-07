@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.Iterator;
 
 @Controller
 public class DataController {
@@ -152,7 +153,6 @@ public class DataController {
             book.setVersion("Français");
             book.setCreatedAt(faker.date().birthday().toLocalDateTime());
             book.setPublicationYear(String.valueOf(faker.number().numberBetween(1250, 2019)));
-
             book.setAuthor(authorRepository.findById(faker.number().numberBetween(1, 50)).get());
             book.setCategory(
                     categoryRepository.findById(faker.number().numberBetween(1, DataTables.categories.length)).get());
@@ -166,11 +166,22 @@ public class DataController {
                 picture.setBook(book);
                 pictureRepository.save(picture);
             }
-            Iterable<AuthorEntity> authors = authorRepository.findAll();
-            authors.forEach();
 
         }
         model.addAttribute("books", bookRepository.findAll());
+
+        Iterable<BookEntity> books = bookRepository.findAll();
+        Iterable<AuthorEntity> authors = authorRepository.findAll();
+
+        Iterator<AuthorEntity> authorIterator = authors.iterator();
+
+        for (BookEntity book : books) {
+            if (authorIterator.hasNext()) {
+                AuthorEntity author = authorIterator.next();
+                book.setAuthor(author);
+                bookRepository.save(book); 
+            }
+        }
 
         // Creation of borrows
         for (int n = 0; n < 100; n++) {
