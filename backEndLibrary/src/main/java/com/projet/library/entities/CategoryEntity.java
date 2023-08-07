@@ -24,9 +24,6 @@ public class CategoryEntity {
     @Column(length = 200)
     private String definition;
 
-    @Column(length = 200)
-    private String picture;
-
     //Relationships
     @OneToMany(mappedBy = "category")
     private Collection<BookEntity> bookCollection;

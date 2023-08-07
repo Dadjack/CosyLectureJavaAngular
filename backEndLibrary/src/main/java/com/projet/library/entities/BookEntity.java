@@ -1,12 +1,12 @@
 package com.projet.library.entities;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +30,7 @@ public class BookEntity {
 
     private Boolean available;
 
-    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    //@Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     @Column(nullable = false , length = 50)
@@ -42,12 +42,12 @@ public class BookEntity {
     @Column(length = 50)
     private String version;
 
-    @Column(length = 200 , nullable = false)
-    private String picture;
-
     //Relationships
     @OneToMany(mappedBy = "book")
     public Collection<BorrowEntity> borrowCollection;
+
+    @OneToMany(mappedBy = "book")
+    private Collection<PictureEntity> pictureCollection;
 
     @ManyToOne
     private AuthorEntity author;

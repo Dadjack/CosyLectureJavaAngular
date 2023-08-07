@@ -1,11 +1,11 @@
 package com.projet.library.entities;
 
-import java.util.Collection;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collection;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +22,11 @@ public class NationalityEntity {
 
     //Relationships
     @ManyToMany
+    @JoinTable(
+            name = "author_country",
+            joinColumns = @JoinColumn(name = "country_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
     private Collection <AuthorEntity> authorCollection;
 
 }
