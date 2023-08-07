@@ -10,9 +10,13 @@
         <module name="library" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="17">
+      <module name="davidugoangejoseph" target="" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="davidugoangejoseph" options="" />
       <module name="library" options="-parameters" />
     </option>
   </component>
