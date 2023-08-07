@@ -9,6 +9,7 @@ import { AdministratorComponent } from './administrator/administrator.component'
 import { AddBookComponent } from './add-book/add-book.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ErrorComponent } from './error/error.component';
     BookComponent,
     AdministratorComponent,
     AddBookComponent,
-    ErrorComponent
+    ErrorComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
