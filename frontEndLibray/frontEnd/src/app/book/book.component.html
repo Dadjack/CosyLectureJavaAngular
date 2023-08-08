@@ -1,13 +1,19 @@
 <p>book works!</p>
 
-<ul *ngFor="let book of books">
-    <li> {{ book.id }}</li>
-    <li> {{ book.title }} </li>
-    <li> {{ book.summary }}</li>
-    <li> {{ book.editor }}</li>
-    <li> {{ book.createdAt }}</li>
-    <li> {{ book.quantity }}</li>
-    <li> {{ book.available }}</li>
-    <li> {{ book.version }}</li>
-    <li> {{ book.publicationYear }}</li>
-</ul>
+<div id="main">
+    <input id="searchbar" type="text" name="search" placeholder="Search book">
+
+
+    <ul *ngFor="let book of books">
+        <li> {{ book.id }}</li>
+        <li> {{ book.title }} </li>
+        <li> {{ book.summary }}</li>
+        <li> {{ book.editor }}</li>
+        <li> {{ book.createdAt }}</li>
+        <li> {{ book.quantity }}</li>
+        <li> {{ book.available }}</li>
+        <li> {{ book.version }}</li>
+        <li> {{ book.publicationYear }}</li>
+    </ul>
+
+</div>

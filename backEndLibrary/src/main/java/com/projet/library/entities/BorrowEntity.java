@@ -2,6 +2,9 @@ package com.projet.library.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +29,11 @@ public class BorrowEntity {
     private Float penalty;
 
     //Relationships
+    @JsonIgnore
     @ManyToOne
     private LibraryUserEntity user;
 
+    @JsonIgnore
     @ManyToOne
     private BookEntity book;
 

@@ -1,0 +1,23 @@
+div#main {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-shrink: 0;
+}
+
+/*SEARCH BAR*/
+#searchbar {
+    width: 80vw;
+    height: 0.2vh;
+    padding: 15px;
+    border: 2px solid #000;
+    background: #FFF;
+}
+
+#searchbar input[type=text]{
+    
+}

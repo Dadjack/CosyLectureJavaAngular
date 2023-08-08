@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -43,15 +45,19 @@ public class BookEntity {
     private String version;
 
     //Relationships
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     public Collection<BorrowEntity> borrowCollection;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     private Collection<PictureEntity> pictureCollection;
 
+    @JsonIgnore
     @ManyToOne
     private AuthorEntity author;
 
+    @JsonIgnore
     @ManyToOne
     private CategoryEntity category;
 

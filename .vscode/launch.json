@@ -9,16 +9,6 @@
             "projectName": "library",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-LibraryApplication<com.projet-library>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.projet.library.LibraryApplication",
-            "projectName": "com.projet-library",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
