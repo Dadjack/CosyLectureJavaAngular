@@ -44,7 +44,7 @@ nav#nav-header {
 div#top-header {
     display: flex;
     width: auto;
-    margin: 0.5vw;
+    margin: 10px;
     justify-content: space-between;
     align-items: center;
 }
@@ -62,7 +62,7 @@ div#logo {
 
 div#btn-connection {
     display: flex;
-    width: 15vw;
+    width: 12vw;
     height: 40px;
     justify-content: space-around;
     align-items: center;
@@ -73,7 +73,7 @@ a#log-in {
     color: var(--secodary-container, #571121);
     text-align: center;
     font-family: var(--font-subtitle, Belgiano Serif);
-    font-size: 2em;
+    font-size: 1.1vw;
     text-decoration-line: underline;
 }
 
@@ -88,7 +88,7 @@ button#btn-sign-in {
     color: var(--secondary-on, #E0BD00);
     text-align: center;
     font-family: var(--font-subtitle, Belgiano Serif);
-    font-size: 30px;
+    font-size: 1.1vw;
 }
 
 /*BANNER*/
@@ -98,7 +98,7 @@ div#banner {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 35vh;
+    height: 20vw;
     background-image: url(../../assets/banner.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -110,14 +110,14 @@ div#banner-txt {
     align-items: center;
     justify-content: center;
     width: fit-content;
-    height: 12vh;
+    height: 8vw;
     padding: 0 3vh;
     background: var(--secodary-container, #571121);
     margin: 15px;
     color: var(--secondary-on, #E0BD00);
     text-align: center;
     font-family: TrajanusBricks;
-    font-size: 2.5em;
+    font-size: 2.5vw;
     word-spacing: 1.5vw;
     letter-spacing: -0.2vw;
 }
