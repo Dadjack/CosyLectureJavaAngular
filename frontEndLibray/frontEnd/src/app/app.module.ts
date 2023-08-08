@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdministratorComponent,
     AddBookComponent,
     ErrorComponent,
-    HeaderComponent
+    HeaderComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
