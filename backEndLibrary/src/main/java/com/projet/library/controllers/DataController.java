@@ -4,7 +4,7 @@ import com.projet.library.datacreation.DataTables;
 import com.projet.library.entities.*;
 import com.projet.library.repositories.*;
 import net.datafaker.Faker;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,7 @@ public class DataController {
     public final PictureRepository pictureRepository;
     public final RoleRepository roleRepository;
 
-    @Autowired
+    //@Autowired
     public DataController(
             AuthorRepository authorRepository,
             BookRepository bookRepository,

@@ -12,9 +12,10 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "libraryuser", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "email")
-})
+@Table(name = "libraryuser")
+// @Table(name = "libraryuser", uniqueConstraints = {
+//         @UniqueConstraint(columnNames = "email")
+// })
 public class LibraryUserEntity {
 
     @Id
