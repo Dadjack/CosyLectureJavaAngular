@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Category } from '../category/category';
+import { Category } from '../models/category';
 import { URL_BACK_END_API } from '../environments/environment';
 import { map } from 'rxjs';
 //import { Observable } from 'rxjs';
@@ -12,14 +12,14 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getAllCategories() {
-    return this.http.get<Category[]>(`${URL_BACK_END_API}/api/category/getAllCategories`).pipe(
-      map(
-        data => {
-          console.log("data categories")
+    return this.http
+      .get<Category[]>(`${URL_BACK_END_API}/api/category/getAllCategories`)
+      .pipe(
+        map((data) => {
+          console.log('data categories');
           return data;
-        }
-      )
-    )
+        })
+      );
   }
 
   createCategory(newBook: any) {

@@ -13,6 +13,7 @@ import { ErrorComponent } from './error/error.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './category/category.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -25,7 +26,8 @@ import { CategoryComponent } from './category/category.component';
     AddBookComponent,
     ErrorComponent,
     HeaderComponent,
-    CategoryComponent
+    CategoryComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

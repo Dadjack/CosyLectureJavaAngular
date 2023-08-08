@@ -1,0 +1,110 @@
+<p>register works!</p>
+<h1>{{ title }}</h1>
+
+
+<form #registrationForm="ngForm" (ngSubmit)="register(registrationForm)">
+  <div>
+    <label for="firstname">Nom:</label><br />
+    <input
+      type="text"
+      id="firstname"
+      placeholder="Nom"
+      name="firstname"
+      [(ngModel)]="libraryUser.firstName"
+      required
+      #firstName="ngModel"
+    />
+    <!-- <div [hidden]="registrationForm.submitted || login.valid" class="error-message">
+      Login is required.
+    </div> -->
+  </div>
+  <div>
+    <label for="firstname">Prénom:</label><br />
+    <input
+      type="text"
+      id="lastname"
+      placeholder="Prénom"
+      name="lastname"
+      [(ngModel)]="libraryUser.lastName"
+      required
+      #lastName="ngModel"
+    />
+    <!-- <div [hidden]="registrationForm.submitted || login.valid" class="error-message">
+      Login is required.
+    </div> -->
+  </div>
+  <div>
+    <label for="email">Email:</label><br />
+    <input
+      type="email"
+      id="mail"
+      name="email"
+      [(ngModel)]="libraryUser.email"
+      required
+      #email="ngModel"
+    />
+    <!-- <div [hidden]="registrationForm.submitted || mail.valid" class="error-message">
+      Email is required.
+    </div> -->
+  </div>
+  <div>
+    <label for="phonenumber">Numéro de téléphone:</label><br />
+    <input
+      type="text"
+      id="phone"
+      name="phonenumber"
+      [(ngModel)]="libraryUser.phoneNumber"
+      required
+      #phonenumber="ngModel"
+    />
+    <!-- <div [hidden]="registrationForm.submitted || mail.valid" class="error-message">
+      Email is required.
+    </div> -->
+  </div>
+  <div>
+    <label for="address">Adresse</label><br />
+    <input
+      type="text"
+      id="address"
+      name="address"
+      [(ngModel)]="libraryUser.address"
+      required
+      #address="ngModel"
+    />
+    <!-- <div [hidden]="registrationForm.submitted || mail.valid" class="error-message">
+      Email is required.
+    </div> -->
+  </div>
+  <div>
+    <label for="password">Mot de passe:</label><br />
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="libraryUser.password"
+      required
+      #password="ngModel"
+    />
+    <!-- <div [hidden]="registrationForm.submitted || password.valid" class="error-message">
+      Password is required.
+    </div> -->
+  </div>
+  <div>
+    <label for="confirmPassword">Confirmer votre mot de passe:</label><br />
+    <input
+      type="password"
+      id="confirmPassword"
+      name="confirmPassword"
+      [(ngModel)]="libraryUser.confirmPassword"
+      required
+      #confirmPassword="ngModel"
+    />
+    <!-- <div [hidden]="registrationForm.submitted || confirmPassword.valid" class="error-message">
+      Confirm Password is required.
+    </div> -->
+    <div *ngIf="libraryUser.password !== libraryUser.confirmPassword" class="error-message">
+      Passwords do not match.
+    </div>
+  </div>
+  <button type="submit">Save</button>
+</form>
