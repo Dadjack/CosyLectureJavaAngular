@@ -12,7 +12,7 @@ export class BookService {
   constructor(private http: HttpClient) {}
 
   getAllBooks() {
-    return this.http.get<Book[]>(`${URL_BACK_END_API}/getAllBooks`).pipe(
+    return this.http.get<Book[]>(`${URL_BACK_END_API}/api/books/getAllBooks`).pipe(
       map(
         data => {
           console.log("data books")
@@ -20,9 +20,9 @@ export class BookService {
         }
       )
     )
-
   }
+
   createBook(newBook: any) {
-     return this.http.post(`${URL_BACK_END_API}/admin/createBook`, newBook);
+    return this.http.post(`${URL_BACK_END_API}/api/admin/createBook`, newBook);
   }
 }

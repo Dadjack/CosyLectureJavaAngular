@@ -12,7 +12,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getAllCategories() {
-    return this.http.get<Category[]>(`${URL_BACK_END_API}/getAllCategories`).pipe(
+    return this.http.get<Category[]>(`${URL_BACK_END_API}/api/category/getAllCategories`).pipe(
       map(
         data => {
           console.log("data categories")
@@ -20,9 +20,9 @@ export class CategoryService {
         }
       )
     )
-
   }
-  createBook(newBook: any) {
-    return this.http.post(`${URL_BACK_END_API}/admin/createBook`, newBook);
+
+  createCategory(newBook: any) {
+    return this.http.post(`${URL_BACK_END_API}/admin/createCategory`, newBook);
   }
 }

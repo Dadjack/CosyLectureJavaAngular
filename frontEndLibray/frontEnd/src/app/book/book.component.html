@@ -10,12 +10,9 @@
                 <option value="harperlee">Harper Lee</option>
             </select>
             <select name="categorie">
-                <option value="">Catégories</option>
-                <option value="fantastique">Fantastique</option>
-                <option value="roman">Roman</option>
-                <option value="policier">Policier</option>
-                <option value="horreur">Horreur</option>
-            </select>
+              <option value="">Catégories</option>
+              <option *ngFor="let category of categories">{{ category.label }}</option>
+          </select>
             <div id="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" height="2vw" viewBox="0 0 512 512">
                     <style>svg {fill: #312229;}</style>
