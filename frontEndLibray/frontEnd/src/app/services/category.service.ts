@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Book } from '../book/book';
+import { Category } from '../category/category';
 import { URL_BACK_END_API } from '../environments/environment';
 import { map } from 'rxjs';
 //import { Observable } from 'rxjs';
@@ -8,14 +8,14 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class BookService {
+export class CategoryService {
   constructor(private http: HttpClient) {}
 
-  getAllBooks() {
-    return this.http.get<Book[]>(`${URL_BACK_END_API}/getAllBooks`).pipe(
+  getAllCategories() {
+    return this.http.get<Category[]>(`${URL_BACK_END_API}/getAllCategories`).pipe(
       map(
         data => {
-          console.log("data books")
+          console.log("data categories")
           return data;
         }
       )
@@ -23,6 +23,6 @@ export class BookService {
 
   }
   createBook(newBook: any) {
-     return this.http.post(`${URL_BACK_END_API}/admin/createBook`, newBook);
+    return this.http.post(`${URL_BACK_END_API}/admin/createBook`, newBook);
   }
 }
