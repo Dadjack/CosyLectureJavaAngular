@@ -1,6 +1,5 @@
 package com.projet.library.controllers;
 
-import com.projet.library.entities.BookEntity;
 import com.projet.library.entities.CategoryEntity;
 import com.projet.library.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
