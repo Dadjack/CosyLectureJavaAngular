@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Book } from '../book/book';
 import { URL_BACK_END_API } from '../environments/environment';
 import { map } from 'rxjs';
-//import { Observable } from 'rxjs';
+import { Author } from '../author/author';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class BookService {
+export class AuthorService {
+
   constructor(private http: HttpClient) { }
 
-  getAllBooks() {
-    return this.http.get<Book[]>(`${URL_BACK_END_API}/getAllBooks`).pipe(
+  getAllAuthors() {
+    return this.http.get<Author[]>(`${URL_BACK_END_API}/getAllAuthors`).pipe(
       map(
         data => {
           return data;
         }
       )
     )
-
   }
-  createBook(newBook: any) {
-    return this.http.post(`${URL_BACK_END_API}/admin/createBook`, newBook);
+
+  createAuthor(newAuthor: any) {
+    return this.http.post(`${URL_BACK_END_API}/admin/createAuthor`, newAuthor);
   }
 }
