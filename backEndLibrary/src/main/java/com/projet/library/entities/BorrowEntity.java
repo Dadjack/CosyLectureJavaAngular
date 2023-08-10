@@ -26,6 +26,10 @@ public class BorrowEntity {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
+    //private long duration;
+
+    //private long delay;
+
     private Float penalty;
 
     //Relationships

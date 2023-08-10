@@ -13,7 +13,11 @@ import { ErrorComponent } from './error/error.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './category/category.component';
+<<<<<<< HEAD
 import { RegisterComponent } from './register/register.component';
+=======
+import { AuthorComponent } from './author/author.component';
+>>>>>>> 747073d0f0329f64c0531035a9fa9c36aeebaae1
 
 
 
@@ -27,7 +31,11 @@ import { RegisterComponent } from './register/register.component';
     ErrorComponent,
     HeaderComponent,
     CategoryComponent,
+<<<<<<< HEAD
     RegisterComponent
+=======
+    AuthorComponent
+>>>>>>> 747073d0f0329f64c0531035a9fa9c36aeebaae1
   ],
   imports: [
     BrowserModule,

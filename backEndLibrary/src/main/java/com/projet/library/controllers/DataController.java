@@ -3,6 +3,7 @@ package com.projet.library.controllers;
 import com.projet.library.datacreation.DataTables;
 import com.projet.library.entities.*;
 import com.projet.library.repositories.*;
+import com.projet.library.services.BorrowService;
 import net.datafaker.Faker;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class DataController {
     public final NationalityRepository nationalityRepository;
     public final PictureRepository pictureRepository;
     public final RoleRepository roleRepository;
+    public final BorrowService borrowService ;
 
     //@Autowired
     public DataController(
@@ -37,7 +39,8 @@ public class DataController {
             LibraryUserRepository userRepository,
             NationalityRepository nationalityRepository,
             PictureRepository pictureRepository,
-            RoleRepository roleRepository) {
+            RoleRepository roleRepository,
+            BorrowService borrowService) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.borrowRepository = borrowRepository;
@@ -46,6 +49,7 @@ public class DataController {
         this.nationalityRepository = nationalityRepository;
         this.pictureRepository = pictureRepository;
         this.roleRepository = roleRepository;
+        this.borrowService = borrowService;
     }
 
     @GetMapping("/dataset")
@@ -184,13 +188,15 @@ public class DataController {
         }
 
         // Creation of borrows
-        for (int n = 0; n < 100; n++) {
+        for (int n = 0; n < 10; n++) {
             BorrowEntity borrow = new BorrowEntity();
             borrow.setUser(userRepository.findById(faker.number().numberBetween(4, 104)).get());
             borrow.setBook(bookRepository.findById(faker.number().numberBetween(1, 100)).get());
-            borrow.setStartDate(faker.date().past(10, TimeUnit.DAYS).toLocalDateTime());
-            borrow.setEndDate(faker.date().future(1, TimeUnit.DAYS).toLocalDateTime());
-            borrow.setPenalty(Float.valueOf(faker.number().numberBetween(0, 10)));
+            borrow.setStartDate(faker.date().past(30, TimeUnit.DAYS).toLocalDateTime());
+            borrow.setEndDate(faker.date().future(30, TimeUnit.DAYS).toLocalDateTime());
+            borrow.setDuration(borrowService.calculateDuration(borrow));
+            borrow.setDelay(borrowService.calculateDelay(borrow));
+            borrow.setPenalty(borrowService.calculatePenalty(borrow));
             borrowRepository.save(borrow);
         }
         model.addAttribute("borrows", borrowRepository.findAll());
